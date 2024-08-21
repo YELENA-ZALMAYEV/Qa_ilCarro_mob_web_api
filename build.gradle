@@ -9,11 +9,24 @@ repositories {
     mavenCentral()
 }
 
+//javadoc.io/doc/io.appium/java-client/4.1.1/io/appium/java-client/MobileElement.html
+
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'org.testng:testng:7.4.0'
+    implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
+
+    compileOnly 'org.projectlombok:lombok:1.18.28'
+    annotationProcessor 'org.projectlombok:lombok:1.18.28'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.28'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.28'
+
+    implementation 'io.appium:java-client:7.6.0'
+
+    implementation 'com.google.code.gson:gson:2.8.6'    //add
+    implementation 'com.jayway.restassured:rest-assured:2.9.0'   //add
 }
 
 test {
-    useJUnitPlatform()
+    useTestNG()
 }
