@@ -14,8 +14,12 @@ public class SplashScreen extends  BaseScreen{
     AndroidElement versionApp;
 
     public boolean validateVersion() {
-
-
         return  textInElementPresent(versionApp,"Version 1.0.0", 3);
     }
+
+    public SplashScreen goToSearchScreen() {
+        pause(5);
+        return new SplashScreen (driver);
+    }
+
 }
