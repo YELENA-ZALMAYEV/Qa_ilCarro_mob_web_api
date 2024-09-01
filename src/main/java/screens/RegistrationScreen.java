@@ -1,6 +1,6 @@
 package screens;
 
-import dto.UserDto;
+import dto.RegistrationBodyDto;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,7 +26,7 @@ public class RegistrationScreen extends BaseScreen {
     @FindBy(xpath = "//hierarchy/android.widget.Toast")
     AndroidElement popUpMessageSuccess;
 
-    public RegistrationScreen typeRegistrationForm(UserDto user) {
+    public RegistrationScreen typeRegistrationForm(RegistrationBodyDto user) {
         fieldFirstName.sendKeys(user.getFirstName());
         fieldLastName.sendKeys(user.getLastName());
         fieldEmail.sendKeys(user.getUserName());
@@ -43,7 +43,4 @@ public class RegistrationScreen extends BaseScreen {
         btnYalla.click();
         return new SearchScreen(driver);
     }
-
-
-
 }
