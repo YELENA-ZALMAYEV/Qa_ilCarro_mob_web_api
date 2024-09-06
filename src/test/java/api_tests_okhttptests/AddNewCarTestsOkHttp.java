@@ -1,4 +1,4 @@
-package api_tests;
+package api_tests.rest;
 
 import dto.*;
 import interfaces.BaseApi;
@@ -15,37 +15,35 @@ import java.util.Random;
 import static okhttp3.RequestBody.*;
 
 public class AddNewCarTestsOkHttp implements BaseApi {
-   TokenDto token = new TokenDto();
+    TokenDto token = new TokenDto();
 
-
-   @BeforeClass
+    @BeforeClass
     public void login(){
-       RegistrationBodyDto registrationBodyDto = RegistrationBodyDto.builder()
-               .userName("dhvisedhiu$@.gmail.com")
-               .password("hguygi@#$")
-               .build();
-       RequestBody requestBody;
-       requestBody = create(JSON, GSON.toJson(registrationBodyDto));
-       Request request = new Request.Builder()
-               .url(BASE_URL+LOGIN_URL)
-               .post(requestBody)
-               .build();
-       Response response;
+        RegistrationBodyDto registrationBodyDto = RegistrationBodyDto.builder()
+                .userName("789baggins_bilbo@mail.com")
+                .password("Zxc12345!")
+                .build();
+        RequestBody requestBody;
+        requestBody = create(JSON, GSON.toJson(registrationBodyDto));
+        Request request = new Request.Builder()
+                .url(BASE_URL+LOGIN_URL)
+                .post(requestBody)
+                .build();
+        Response response;
+        try {
+            response = OK_HTTP_CLIENT.newCall(request).execute();
+            System.out.println(response);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            token = GSON.fromJson(response.body().string(), TokenDto.class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(token);
+    }
 
-       try {
-           response = OK_HTTP_CLIENT.newCall(request).execute();
-           System.out.println(response);
-       } catch (IOException e) {
-           throw new RuntimeException(e);
-       }
-
-       try {
-           token = GSON.fromJson(response.body().string(), TokenDto.class);
-       } catch (IOException e) {
-           throw new RuntimeException(e);
-       }
-       System.out.println(token);
-   }
     @Test
     public void addNewCarPositiveTest(){
         int i = new Random().nextInt(1000) + 1000;
@@ -63,7 +61,7 @@ public class AddNewCarTestsOkHttp implements BaseApi {
         RequestBody requestBody = create(JSON, GSON.toJson(car));
         Request request = new Request.Builder()
                 .url(BASE_URL+ADD_NEW_CAR_URL)
-                .addHeader("Authorization",token.getAccessToken())
+                .addHeader("Authorization", String.valueOf(token))
                 .post(requestBody)
                 .build();
         Response response;
