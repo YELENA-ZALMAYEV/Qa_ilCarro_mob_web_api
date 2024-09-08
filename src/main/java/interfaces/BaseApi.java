@@ -2,6 +2,7 @@ package interfaces;
 
 
 import com.google.gson.Gson;
+import dto.RegistrationBodyDto;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 
@@ -18,4 +19,9 @@ public interface BaseApi {
     MediaType JSON = MediaType.get("application/json");
     OkHttpClient OK_HTTP_CLIENT = new OkHttpClient();
 
+
+    RegistrationBodyDto USER_LOGIN = RegistrationBodyDto.builder()
+            .userName("789baggins_bilbo@mail.com")
+            .password("Zxc12345!")
+            .build();
 }

@@ -25,8 +25,8 @@ public class CarDto {
     private  double pricePerDay;
     private  String about;
     private  String city;
-    private  double lat;
-    private  double lng;
+ //   private  double lat;
+ //   private  double lng;
     private  String image;
     private  String owner;
     private List<BookedDto> bookedPeriods;
@@ -43,6 +43,7 @@ public class CarDto {
     public int hashCode() {
         return Objects.hash(serialNumber, manufacture, model, year, fuel, seats, carClass, pricePerDay, about, city, image, owner, bookedPeriods);
     }
+
 
     //    @Override
 //    public boolean equals(Object o) {
